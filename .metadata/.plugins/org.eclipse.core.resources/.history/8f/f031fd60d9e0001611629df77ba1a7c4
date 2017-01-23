@@ -1,0 +1,42 @@
+package com.example;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClienteService {
+
+	
+	Map<Integer, Cliente> clientes = new HashMap<>();
+	Integer proximoId = 1;
+
+	private Cliente cadastrar(Cliente cliente) {
+
+		cliente.setId(proximoId);
+		clientes.put(proximoId, cliente);
+		proximoId++;
+		return cliente;
+
+	}
+
+	private Collection<Cliente> buscartodos() {
+		return clientes.values();
+	}
+
+	private void excluir(Cliente cliente) {
+		clientes.remove(cliente.getId());
+	}
+
+	private Cliente buscarPorId(Integer id) {
+		return clientes.get(id);
+	}
+	
+	private Cliente alterar(Cliente cliente){
+		clientes.put(cliente.getId(), cliente);
+		return cliente;
+	}
+	
+}

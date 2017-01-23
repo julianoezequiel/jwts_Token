@@ -1,0 +1,15 @@
+package com.example;
+
+public class Cliente {
+
+	
+	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+	private void set() {
+		// TODO Auto-generated method stub
+
+	}
+}

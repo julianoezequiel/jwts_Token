@@ -1,0 +1,31 @@
+package com.example;
+
+import java.io.IOException;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.filter.GenericFilterBean;
+
+public class TokenFilter extends GenericFilterBean {
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		String header = req.getHeader("Authorization");
+
+		if (header == null || !header.startsWith("Bearer ")) {
+			throw new ServletException("Token inexistente ou inválido");
+		}
+		
+		String token =  header.substring(7);
+		
+		filterChain.doFilter(arg0, arg1);
+
+	}
+
+}
